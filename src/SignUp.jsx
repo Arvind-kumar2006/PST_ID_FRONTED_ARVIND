@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom';
 function SignUp() {
   const [username , setUserName] = useState('');
   const[email , setEmail] = useState('');
   const[password , setPassword] = useState('');
 
+ const navigate = useNavigate()
  const register = () =>{
     const obj = {
       username,
@@ -15,6 +16,7 @@ function SignUp() {
     try{
       axios.post('http://localhost:8000/auth/register' ,obj)
       alert("register succesfully")
+      navigate('/login')
     }catch(error){
       console.log(error.message)
     }
@@ -35,8 +37,6 @@ function SignUp() {
           </form>
     </div>
    
-    
-    
     </>
    
   )
